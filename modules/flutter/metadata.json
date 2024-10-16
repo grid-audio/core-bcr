@@ -1,0 +1,17 @@
+{
+    "homepage": "http://flutter.dev",
+    "maintainers": [
+        {
+            "email": "yurchenko.dennis@gmail.com",
+            "github": "twitchyjoe",
+            "name": "Dennis Yurchenko"
+        }
+    ],
+    "repository": [
+        "github:flutter/flutter"
+    ],
+    "versions": [
+        "3.24.3"
+    ],
+    "yanked_versions": {}
+}

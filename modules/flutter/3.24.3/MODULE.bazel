@@ -1,0 +1,7 @@
+module(
+    name = "flutter",
+    version = "3.24.3",
+    compatibility_level = 1,
+    bazel_compatibility = [">=7.3.2"],
+)
+bazel_dep(name = "rules_cc", version = "0.0.9")

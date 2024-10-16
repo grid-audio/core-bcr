@@ -1,0 +1,10 @@
+{
+    "integrity": "sha256-da685843117f42ca2dd4ce64d65810a79353cd574c308df567efdf929075e03b",
+    "strip_prefix": "flutter-3.24.3",
+    "url": "https://github.com/flutter/flutter/archive/refs/tags/3.24.3.tar.gz",
+    "overlay": {
+        "BUILD.bazel": "sha256-4ee757ca098d152ca75ac83901363cf719fd714ea4a9644737caa99bb6f69558",
+        "MODULE.bazel": "sha256-32d5a3ed56a27149dac798fc66d389547055b443d0d79f325fbc6adc954bddaa",
+        "defs.bzl": "sha256-9f061262eec92578e54cbf75a0442bacad5c7466e4c4400b0af5b0d027c16ad4"
+    }
+}

@@ -1,0 +1,30 @@
+# flutter/BUILD
+
+load("//:defs.bzl", "flutter_command")
+
+
+# Define the Flutter build APK command
+flutter_command(
+    name = "flutter_build_apk",
+    args = ["build", "apk"],
+)
+
+# Define the Flutter run command (run the app on a device or emulator)
+flutter_command(
+    name = "flutter_run",
+    args = ["run"],
+)
+
+# Define the Flutter update-packages command (update dependencies)
+flutter_command(
+    name = "flutter_update_packages",
+    args = ["update-packages"],
+)
+
+# Define the Flutter doctor command (check Flutter environment)
+flutter_command(
+    name = "flutter_doctor",
+    args = ["doctor"],
+    visibility = ["//visibility:public"],
+)
+
