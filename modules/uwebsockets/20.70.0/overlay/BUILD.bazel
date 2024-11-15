@@ -1,7 +1,6 @@
 cc_library(
     name = "uwebsockets",
     hdrs = glob(["src/*.h", "src/*.hpp"]),
-    strip_include_prefix = "src",
     deps = [
         "@libuv//:libuv",
         "@zlib//:zlib",
