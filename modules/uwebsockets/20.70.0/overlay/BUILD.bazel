@@ -1,11 +1,12 @@
 cc_library(
     name = "uwebsockets",
-    hdrs = glob(["src/*.h", "src/*.hpp"]),
-    includes = ["src"],
-    strip_include_prefix = "src",
+    hdrs = glob(["uwebsockets/src/*.h", "uwebsockets/src/*.hpp"]),
+    includes = ["uwebsockets"],
+    strip_include_prefix = "uwebsockets/src",
     deps = [
         "@libuv//:libuv",
         "@zlib//:zlib",
     ],
     visibility = ["//visibility:public"],
 )
+
