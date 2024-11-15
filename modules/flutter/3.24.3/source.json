@@ -3,8 +3,8 @@
     "strip_prefix": "flutter-3.24.3",
     "url": "https://github.com/flutter/flutter/archive/refs/tags/3.24.3.tar.gz",
     "overlay": {
-        "BUILD.bazel": "sha256-1NCeqNdRlBO4WXwIxbBA86XnTQqKJyEry/MbM3QbsUM=",
-        "bin/BUILD.bazel": "sha256-IVHgt0IdkLL7PhrFviGAAeKbgxVNcaidQWDurfZcZ+Y=",
+        "BUILD.bazel": "sha256-13Fed5Fs4IT1Fe7OUsuVCpAU399hQwrcJRVpX3WgaEg=",
+        "bin/BUILD.bazel": "sha256-BReyyPYPTg2ysm6k39NE524/zlngtTqovZlK3/pCk2o=",
         "MODULE.bazel": "sha256-MtWj7VaicUnax5j8ZtOJVHBVtEPQ158yX7xq3JVL3ao=",
         "defs.bzl": "sha256-JsnDZ9398QcXSVJWGie9YFatd1Bl54drWwYve+3cmlU="
     }

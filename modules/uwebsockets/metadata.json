@@ -1,0 +1,17 @@
+{
+    "homepage": "https://github.com/uNetworking/uWebSockets",
+    "maintainers": [
+        {
+            "email": "yurchenko.dennis@gmail.com",
+            "github": "twitchyjoe",
+            "name": "Dennis Yurchenko"
+        }
+    ],
+    "repository": [
+        "github:uNetworking/uWebSockets"
+    ],
+    "versions": [
+        "20.70.0"
+    ],
+    "yanked_versions": {}
+}
