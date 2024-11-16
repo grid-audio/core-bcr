@@ -1,12 +1,45 @@
+# BUILD.bazel
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+COPTS = [
+    "-DLIBUS_USE_OPENSSL",
+    "-DLIBUS_USE_LIBUV",
+    "-Wno-unused-parameter",
+    "-Wno-unused-but-set-variable",
+]
+
+LINUX_COPTS = [
+    "-DLIBUS_NO_SSL=0",
+    "-DLIBUS_USE_OPENSSL=1",
+]
+
 cc_library(
     name = "usockets",
-    srcs = glob(["src/**/*.c", "src/**/*.cpp"]),
-    hdrs = glob(["src/**/*.h", "src/**/*.hpp"]),
+    srcs = glob([
+        "src/**/*.c",
+        "src/**/*.cpp",
+        "src/internal/*.h",  # Internal headers should be treated as sources
+    ]),
+    hdrs = glob([
+        "src/*.h",
+        "src/internal/*.h",
+    ]),
     strip_include_prefix = "src",
     include_prefix = "",
+    copts = select({
+        "@platforms//os:linux": COPTS + LINUX_COPTS,
+        "//conditions:default": COPTS,
+    }),
+    defines = [
+        "LIBUS_USE_OPENSSL",
+    ],
     deps = [
         "@boringssl//:ssl",
         "@boringssl//:crypto",
     ],
+    linkopts = select({
+        "@platforms//os:linux": ["-lpthread"],
+        "//conditions:default": [],
+    }),
     visibility = ["//visibility:public"],
 )
