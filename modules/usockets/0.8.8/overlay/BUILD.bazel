@@ -1,6 +1,12 @@
 cc_library(
     name = "usockets",
-    hdrs = glob(["src/*.h", "src/*.hpp"]),
+    srcs = glob(["src/**/*.c", "src/**/*.cpp"]),
+    hdrs = glob(["src/**/*.h", "src/**/*.hpp"]),
     strip_include_prefix = "src",
+    include_prefix = "",
+    deps = [
+        "@boringssl//:ssl",
+        "@boringssl//:crypto",
+    ],
     visibility = ["//visibility:public"],
 )
