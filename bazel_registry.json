@@ -1,3 +1,15 @@
 {
-    "mirrors": []
+    "mirrors": [],
+    "modules": [
+        {
+            "name": "uwebsockets",
+            "versions": ["20.44.0"],
+            "path": "modules/uwebsockets"
+        },
+        {
+            "name": "usockets",
+            "versions": ["0.8.8"],
+            "path": "modules/usockets"
+        }
+    ]
 }
