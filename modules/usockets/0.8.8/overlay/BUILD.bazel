@@ -1,51 +1,68 @@
-# BUILD.bazel
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-COPTS = [
-    "-DLIBUS_USE_OPENSSL",
-    "-DLIBUS_USE_LIBUV",
-    "-Wno-unused-parameter",
-    "-Wno-unused-but-set-variable",
-]
+# Note: We use a filegroup for all headers instead of cc_library's hdrs attribute because:
+# 1. Internal headers have interdependencies and external targets need them
+# 2. Using filegroup treats all headers as source files, creating a single unified symlink tree
+# 3. This avoids Bazel's public/private header split which can break with complex header structures
+# 4. Glob pattern ensures all headers are found without manual listing
 
-LINUX_COPTS = [
-    "-DLIBUS_NO_SSL=0",
-    "-DLIBUS_USE_OPENSSL=1",
-]
+filegroup(
+    name = "usockets_headers",
+    srcs = glob([
+        "src/**/*.h",  # Recursively include all header files
+    ]),
+)
 
 cc_library(
     name = "usockets",
-    srcs = glob([
-        "src/*.c",
-        "src/eventing/*.c",
-        "src/crypto/*.c",
-        "src/internal/**/*.c",
-    ]),
-    hdrs = glob([
-        "src/*.h",
-        "src/internal/**/*.h",
-        "src/internal/*.h",
-        "src/eventing/*.h",
-        "src/crypto/*.h",
-    ]),
+    srcs = [
+        # Core C files
+        "src/bsd.c",
+        "src/context.c",
+        "src/loop.c",
+        "src/socket.c",
+        "src/udp.c",
+        
+        # Crypto implementation
+        "src/crypto/openssl.c",
+        "src/crypto/sni_tree.cpp",
+        
+        # Event loop implementations
+        "src/eventing/libuv.c",
+        "src/eventing/epoll_kqueue.c",
+        
+        # IO_uring implementations
+        "src/io_uring/io_context.c",
+        "src/io_uring/io_loop.c",
+        "src/io_uring/io_socket.c",
+        
+        # QUIC support files
+        "src/quic.c",
+        
+        # Include all headers as sources to make them available
+        ":usockets_headers",
+    ],
+    copts = [
+        "-O3",
+        "-DLIBUS_USE_OPENSSL",
+        "-DLIBUS_USE_LIBUV",
+        "-pthread",
+        "-Iexternal/boringssl/include",
+        "-I$(GENDIR)/external/usockets/src",
+        "-I.",
+    ] + select({
+        "@platforms//os:windows": [],
+        "//conditions:default": ["-flto"],
+    }),
     includes = [
+        ".",
         "src",
     ],
-    copts = select({
-        "@platforms//os:linux": COPTS + LINUX_COPTS,
-        "//conditions:default": COPTS,
-    }),
-    defines = [
-        "LIBUS_USE_OPENSSL",
-    ],
+    strip_include_prefix = "src",
+    visibility = ["//visibility:public"],
     deps = [
         "@boringssl//:ssl",
         "@boringssl//:crypto",
         "@libuv",
     ],
-    linkopts = select({
-        "@platforms//os:linux": ["-lpthread"],
-        "//conditions:default": [],
-    }),
-    visibility = ["//visibility:public"],
 )

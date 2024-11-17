@@ -3,7 +3,7 @@
     "strip_prefix": "uSockets-0.8.8",
     "url": "https://github.com/uNetworking/uSockets/archive/refs/tags/v0.8.8.tar.gz",
     "overlay": {
-        "BUILD.bazel": "sha256-zxbqxLlMlg2BJQ/Ghd+bWM7y4hFUVrKsd62OmgOD+Ic=",
+        "BUILD.bazel": "sha256-lbOfA89cIjLW9oIeuuCUvrw+Wo5gIRGsYHgiz4Esffo=",
         "MODULE.bazel": "sha256-MtWj7VaicUnax5j8ZtOJVHBVtEPQ158yX7xq3JVL3ao="
     }
 }
