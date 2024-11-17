@@ -16,16 +16,21 @@ LINUX_COPTS = [
 cc_library(
     name = "usockets",
     srcs = glob([
-        "src/**/*.c",
-        "src/**/*.cpp",
-        "src/internal/*.h",  # Internal headers should be treated as sources
+        "src/*.c",
+        "src/eventing/*.c",
+        "src/crypto/*.c",
+        "src/internal/**/*.c",
     ]),
     hdrs = glob([
         "src/*.h",
+        "src/internal/**/*.h",
         "src/internal/*.h",
+        "src/eventing/*.h",
+        "src/crypto/*.h",
     ]),
-    strip_include_prefix = "src",
-    include_prefix = "",
+    includes = [
+        "src",
+    ],
     copts = select({
         "@platforms//os:linux": COPTS + LINUX_COPTS,
         "//conditions:default": COPTS,
@@ -36,6 +41,7 @@ cc_library(
     deps = [
         "@boringssl//:ssl",
         "@boringssl//:crypto",
+        "@libuv",
     ],
     linkopts = select({
         "@platforms//os:linux": ["-lpthread"],
