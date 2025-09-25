@@ -3,7 +3,7 @@
     "strip_prefix": "uWebSockets-20.70.0",
     "url": "https://github.com/uNetworking/uWebSockets/archive/refs/tags/v20.70.0.tar.gz",
     "overlay": {
-        "BUILD.bazel": "sha256-x0chxgieIaSKAGmi570NdyBuYt3Ct4N2PycB0VkgtpI=",
+        "BUILD.bazel": "sha256-rArR6McQatiDlK0vMg+YLwBum6qxzd61aV/HcKYRm0Q=",
         "MODULE.bazel": "sha256-MtWj7VaicUnax5j8ZtOJVHBVtEPQ158yX7xq3JVL3ao="
     }
 }
